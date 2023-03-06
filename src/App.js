@@ -29,6 +29,10 @@ function App() {
     }
     setImage(images[current]);
   };
+  const getAlt = (image) => {
+    const splittedImage = image.split("/");
+    return splittedImage[splittedImage.length - 1].split(".")[0];
+  };
 
   return (
     <div className="App">
@@ -42,7 +46,7 @@ function App() {
         </div>
 
         <div className="image-cont">
-          <img className="image" src={image} alt={`image${current}`}></img>
+          <img className="image" src={image} alt={getAlt(image)}></img>
         </div>
       </div>
     </div>

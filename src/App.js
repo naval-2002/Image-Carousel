@@ -2,8 +2,6 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [current, setCurrent] = useState(0);
-
   const images = [
     "https://www.shutterstock.com/image-photo/white-sands-sandtrap-rolling-greens-600w-2162092203.jpg",
     "https://www.shutterstock.com/image-photo/st-andrews-scotland-united-kingdom-600w-1804576861.jpg",
@@ -12,6 +10,8 @@ function App() {
     "https://www.shutterstock.com/image-photo/beautiful-higan-cherry-tree-blossom-600w-402970669.jpg",
     "https://www.shutterstock.com/image-photo/spring-cherry-blossoms-bloom-argyle-600w-1022689897.jpg",
   ];
+  const [current, setCurrent] = useState(0);
+  const [image, setImage] = useState(images[current]);
 
   const previous = () => {
     if (current === 0) {
@@ -19,6 +19,7 @@ function App() {
     } else {
       setCurrent(current - 1);
     }
+    setImage(images[current]);
   };
   const forward = () => {
     if (current === images.length - 1) {
@@ -26,6 +27,7 @@ function App() {
     } else {
       setCurrent(current + 1);
     }
+    setImage(images[current]);
   };
 
   return (
@@ -40,11 +42,7 @@ function App() {
         </div>
 
         <div className="image-cont">
-          {images.map((val, idx) => {
-            if (idx === current) {
-              return <img className="image" key={idx} src={val}></img>;
-            }
-          })}
+          <img className="image" src={image} alt={`image${current}`}></img>
         </div>
       </div>
     </div>
